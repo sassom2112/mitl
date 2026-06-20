@@ -8,7 +8,7 @@ consumes; it is either hand-authored or produced by mitl.extract.bedrock.
 from __future__ import annotations
 
 import dataclasses
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 
 @dataclasses.dataclass

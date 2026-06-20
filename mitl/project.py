@@ -8,7 +8,7 @@ that can be evaluated against ground-truth labels or fed into AutoML.
 from __future__ import annotations
 
 import logging
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, List
 
 import pandas as pd
 
