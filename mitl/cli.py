@@ -27,7 +27,6 @@ import json
 import os
 import sys
 from pathlib import Path
-from typing import Optional
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Colour helpers (no external deps)
@@ -252,11 +251,11 @@ def _print_review_summary(rpt: dict, verbose: bool = False) -> None:
     if needs_l and verbose:
         print()
         print(_warn(f"  {len(needs_l)} loop(s) need review:"))
-        for l in needs_l:
-            rl  = "RL=yes" if l["has_rate_limiter"] else "RL=no"
-            sat = "Sat=yes" if l["has_saturation"]  else "Sat=no"
-            print(f"    {_warn(l['loop_id']):<14}  {rl}  {sat}  "
-                  f"conf={l['confidence']:.2f}  {l.get('figure','')}")
+        for loop in needs_l:
+            rl  = "RL=yes" if loop["has_rate_limiter"] else "RL=no"
+            sat = "Sat=yes" if loop["has_saturation"]  else "Sat=no"
+            print(f"    {_warn(loop['loop_id']):<14}  {rl}  {sat}  "
+                  f"conf={loop['confidence']:.2f}  {loop.get('figure','')}")
 
     suspicious = rpt["suspicious_bounds"]
     if suspicious:
@@ -273,7 +272,7 @@ def _print_review_summary(rpt: dict, verbose: bool = False) -> None:
     print()
     if needs or needs_l:
         tag_list = " ".join(t["tag"] for t in needs[:6])
-        loop_list = " ".join(l["loop_id"] for l in needs_l[:4])
+        loop_list = " ".join(lp["loop_id"] for lp in needs_l[:4])
         approve_cmd = f"  mitl approve {name}"
         if tag_list:
             approve_cmd += f" --tags {tag_list}"
@@ -330,7 +329,7 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
         spec = lib_load(args.spec)
     except KeyError as e:
         print(_err(str(e)))
-        print(f"  Available specs: mitl list")
+        print("  Available specs: mitl list")
         return 1
 
     print(_head(f"\n  MITL Evaluate — {csv_path.name}  ×  {args.spec}"))
@@ -411,7 +410,7 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
     flagged = sum(y_pred)
     n_w     = len(results)
     print()
-    print(_head(f"  ── Results ──────────────────────────────────────────"))
+    print(_head("  ── Results ──────────────────────────────────────────"))
     print(f"  Windows evaluated:  {n_w}")
     print(f"  Windows flagged:    {flagged}  ({100*flagged/max(n_w,1):.1f}%)")
 
