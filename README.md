@@ -194,13 +194,13 @@ Test CSV    ──► ConstraintProjector (C1–C4 applied per window)
 ## Citation
 
 ```bibtex
-@inproceedings{mitl2027,
+@inproceedings{mitl2026,
   title     = {{Manual-in-the-Loop (MITL)}: Specification-Derived Constraint
                Projection for {ICS} Anomaly Detection},
   author    = {Anonymous},
   booktitle = {Proceedings of the ACM Workshop on Artificial Intelligence
                and Security (AISec)},
-  year      = {2027},
+  year      = {2026},
   note      = {Companion to CATT (AISec @ CCS 2026)}
 }
 ```
